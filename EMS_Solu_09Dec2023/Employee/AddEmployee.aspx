@@ -9,6 +9,10 @@
 <head runat="server">
     <title></title>
     <link href="../StaticFiles/css/bootstrap.css" rel="stylesheet" />
+    <link href="../StaticFiles/toastr/toastr.css" rel="stylesheet" />
+
+    <script src="../StaticFiles/jquery/jquery.min.js"></script>
+    <script src="../StaticFiles/toastr/toastr.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -71,10 +75,10 @@
                         </tr>
 
                         <tr>
-                            <th>Primary Skills</th>
+                            <th>Salary</th>
                             <td>
                                 <%-- <asp:CheckBox runat="server" ID="chkDotNet" Text=".Net Framework"/>--%>
-                                <asp:CheckBoxList runat="server" ID="chkSkills"
+                              <%--  <asp:CheckBoxList runat="server" ID="chkSkills"
                                     RepeatDirection="Horizontal"
                                     RepeatColumns="3">
                                     <asp:ListItem>.Net Framework</asp:ListItem>
@@ -83,7 +87,8 @@
                                     <asp:ListItem>Python</asp:ListItem>
                                     <asp:ListItem>SQL Server</asp:ListItem>
                                     <asp:ListItem>Oracle</asp:ListItem>
-                                </asp:CheckBoxList>
+                                </asp:CheckBoxList>--%>
+                                <asp:TextBox runat="server" ID="txtSalary"></asp:TextBox>
                             </td>
                         </tr>
 

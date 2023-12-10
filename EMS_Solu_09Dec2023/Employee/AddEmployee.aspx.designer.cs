@@ -78,13 +78,13 @@ namespace EMS_Solu_09Dec2023.Employee
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
 
         /// <summary>
-        /// chkSkills control.
+        /// txtSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkSkills;
+        protected global::System.Web.UI.WebControls.TextBox txtSalary;
 
         /// <summary>
         /// txtSalaryAccNo control.
