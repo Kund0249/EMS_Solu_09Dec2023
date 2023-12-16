@@ -10,17 +10,35 @@ namespace EMS_Solu_09Dec2023.Employee
 {
     public partial class AddEmployee : System.Web.UI.Page
     {
+        string cs = "Data Source=.;DataBase=Assignement10112023;trusted_connection=true";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string Gender = string.Empty;
-
-            //if (rdbGenderMale.Checked)
-            //    Gender = "M";
-            //else if (rdbGenderFemale.Checked)
-            //    Gender = "F";
-
-            // Gender = rdbGender.SelectedValue;
+            if (!IsPostBack)
+            {
+                GetDepartment();
+            }
         }
+
+        private void GetDepartment()
+        {
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand("spGetAllDepartments", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            ddlDepartment.DataSource = reader;
+            ddlDepartment.DataBind();
+            con.Close();
+
+            ddlDepartment.Items.Insert(0, new ListItem()
+            {
+                Text = "Select Department",
+                Value = "-1"
+            });
+        }
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -45,14 +63,29 @@ namespace EMS_Solu_09Dec2023.Employee
 
             //Step-1 : Establish the Connection with DB
             //-> Connection String : [Data Source] + [DataBase] + [Credentials]
-            string cs = "Data Source=.;DataBase=Assignement10112023;trusted_connection=true";
             SqlConnection con = new SqlConnection(cs);
 
             //Step-1 : Prepare Sql Command
-            string Query = string.Format("INSERT INTO TEMPLOYEE " +
-                "Values('{0}',{1},'{2}','{3}','{4}','{5}',{6},'{7}')",
-                fullName, Department, Gender, Mob, DOJ, email,salary, salaeyacc);
-            SqlCommand cmd = new SqlCommand(Query, con);
+            //string Query = string.Format("INSERT INTO TEMPLOYEE " +
+            //    "Values('{0}',{1},'{2}','{3}','{4}','{5}',{6},'{7}')",
+            //    fullName, Department, Gender, Mob, DOJ, email,salary, salaeyacc);
+            //SqlCommand cmd = new SqlCommand(Query, con);
+            //cmd.CommandType = System.Data.CommandType.Text;
+
+            SqlCommand cmd = new SqlCommand("spAddEmployee", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter1 = new SqlParameter("@Name", fullName);
+            SqlParameter parameter2 = new SqlParameter("@departmentId", Department);
+            cmd.Parameters.Add(parameter1);
+            cmd.Parameters.Add(parameter2);
+
+            cmd.Parameters.AddWithValue("@Gender", Gender);
+            cmd.Parameters.AddWithValue("@ContactNo", Mob);
+            cmd.Parameters.AddWithValue("@DOJ", DOJ);
+            cmd.Parameters.AddWithValue("@EmailAddress", email);
+            cmd.Parameters.AddWithValue("@Salary", salary);
+            cmd.Parameters.AddWithValue("@BankAccount", salaeyacc);
 
             //Step-3 : Open the connection, Execute Command and Close the connection.
             con.Open();
