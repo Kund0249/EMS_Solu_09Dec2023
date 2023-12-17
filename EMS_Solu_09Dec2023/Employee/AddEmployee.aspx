@@ -20,8 +20,19 @@
                 <div class="col-6 offset-3">
                     <table class="table">
                         <tr>
+                            <th>Upload Profile Image</th>
+                            <td>
+                                <asp:FileUpload runat="server" ID="ProfileImage"
+                                    CssClass="form-control" />
+                            </td>
+                        </tr>
+
+                        <tr>
                             <th>Employee Full Name</th>
                             <td>
+                                <%-- TextMode="MultiLine"
+                                    Rows="3"
+                                    Columns="50"--%>
                                 <asp:TextBox
                                     runat="server" ID="txtFullName"
                                     CssClass="form-control"></asp:TextBox>
@@ -202,7 +213,8 @@
                             <td>
                                 <asp:Button runat="server" ID="btnReset" Text="Re-Set"
                                     OnClick="btnReset_Click"
-                                    CssClass="btn btn-danger" />
+                                    CssClass="btn btn-danger"
+                                    CausesValidation="false"/>
                             </td>
                         </tr>
 

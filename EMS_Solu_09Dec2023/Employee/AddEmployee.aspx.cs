@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace EMS_Solu_09Dec2023.Employee
 {
     public partial class AddEmployee : System.Web.UI.Page
     {
-        string cs = "Data Source=.;DataBase=Assignement10112023;trusted_connection=true";
-
+        // string cs = "Data Source=.;DataBase=Assignement10112023;trusted_connection=true";
+        string cs = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            cs = ConfigurationManager.ConnectionStrings["DBCom"].ConnectionString;
+
             if (!IsPostBack)
             {
                 GetDepartment();
@@ -42,6 +45,23 @@ namespace EMS_Solu_09Dec2023.Employee
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            string ProfileImageFileName = null;
+            if (ProfileImage.HasFile)
+            {
+                //foreach (var item in ProfileImage.PostedFiles)
+                //{
+
+                //}
+                //1024 bytes = 1KB
+                //long length = ProfileImage.FileContent.Length;
+                //int kb = legth/1024;
+                //1024 KB = 1 MB
+                //int MB = KB/1024
+                string guidId = Guid.NewGuid().ToString();
+                ProfileImageFileName = guidId + "_" + ProfileImage.FileName;
+                ProfileImage.SaveAs(Server.MapPath("~/ProfileImages/" + ProfileImageFileName));
+            }
+
             string fullName = txtFullName.Text;
             string Gender = rdbGender.SelectedValue;
             string Department = ddlDepartment.SelectedValue;
@@ -86,6 +106,7 @@ namespace EMS_Solu_09Dec2023.Employee
             cmd.Parameters.AddWithValue("@EmailAddress", email);
             cmd.Parameters.AddWithValue("@Salary", salary);
             cmd.Parameters.AddWithValue("@BankAccount", salaeyacc);
+            cmd.Parameters.AddWithValue("@ProfileImage", ProfileImageFileName);
 
             //Step-3 : Open the connection, Execute Command and Close the connection.
             con.Open();
