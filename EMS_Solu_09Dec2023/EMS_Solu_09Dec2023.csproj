@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Employee\AddEmployee.aspx" />
+    <Content Include="Employee\EditEmployee.aspx" />
     <Content Include="Employee\EmployeeList.aspx" />
     <Content Include="StaticFiles\css\bootstrap.css" />
     <Content Include="StaticFiles\jquery\jquery.min.js" />
@@ -82,6 +83,13 @@
     </Compile>
     <Compile Include="Employee\AddEmployee.aspx.designer.cs">
       <DependentUpon>AddEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeList.aspx.cs">
       <DependentUpon>EmployeeList.aspx</DependentUpon>

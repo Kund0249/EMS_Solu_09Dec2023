@@ -38,5 +38,22 @@ namespace EMS_Solu_09Dec2023.Employee
                 con.Close();
             }
         }
+
+        protected void EmployeeGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+           // int rowIndex = e.RowIndex;
+            string empid = EmployeeGrid.DataKeys[e.RowIndex].Value.ToString();
+            //delete from DB
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployee", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmpId", empid);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                GetEmployees();
+            }
+        }
     }
 }
