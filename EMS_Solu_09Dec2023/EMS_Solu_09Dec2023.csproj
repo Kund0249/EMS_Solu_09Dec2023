@@ -67,9 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DBSCRIPT\TableScript.txt" />
     <Content Include="Employee\AddEmployee.aspx" />
     <Content Include="Employee\EditEmployee.aspx" />
     <Content Include="Employee\EmployeeList.aspx" />
+    <Content Include="Employee\Test.aspx" />
     <Content Include="StaticFiles\css\bootstrap.css" />
     <Content Include="StaticFiles\jquery\jquery.min.js" />
     <Content Include="StaticFiles\toastr\toastr.css" />
@@ -77,6 +79,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppLayout\_Layout.Master.cs">
+      <DependentUpon>_Layout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppLayout\_Layout.Master.designer.cs">
+      <DependentUpon>_Layout.Master</DependentUpon>
+    </Compile>
     <Compile Include="Employee\AddEmployee.aspx.cs">
       <DependentUpon>AddEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -98,10 +107,18 @@
     <Compile Include="Employee\EmployeeList.aspx.designer.cs">
       <DependentUpon>EmployeeList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />
+    <Content Include="AppLayout\_Layout.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

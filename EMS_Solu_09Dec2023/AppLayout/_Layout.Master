@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="_Layout.master.cs" Inherits="EMS_Solu_09Dec2023.AppLayout._Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="../StaticFiles/css/bootstrap.css" rel="stylesheet" />
+    <link href="../StaticFiles/toastr/toastr.css" rel="stylesheet" />
+
+    <script src="../StaticFiles/jquery/jquery.min.js"></script>
+    <script src="../StaticFiles/toastr/toastr.min.js"></script>
+    <style>
+        .maincontent {
+            min-height: 450px;
+            overflow: auto;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder runat="server" ID="ContenHead">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <asp:Repeater runat="server" ID="NavList">
+                        <ItemTemplate>
+                            <li class="nav-item active">
+                                <asp:HyperLink runat="server" 
+                                    Text='<%# Eval("Text")%>'
+                                    NavigateUrl='<%# Eval("Value") %>'
+                                    CssClass="nav-link">
+                                </asp:HyperLink>
+<%--                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--%>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row maincontent">
+                <div class="col-2">
+                </div>
+                <div class="col-10">
+                    <asp:ContentPlaceHolder runat="server" ID="ContentPage">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="bg-light-subtle">
+                    <h3 class="text-center">This is my Footer
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+
+
+    </form>
+</body>
+</html>
