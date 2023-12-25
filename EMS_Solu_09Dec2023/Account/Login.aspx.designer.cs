@@ -7,38 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EMS_Solu_09Dec2023.Employee
+namespace EMS_Solu_09Dec2023.Account
 {
 
 
-    public partial class Test
+    public partial class Login
     {
 
         /// <summary>
-        /// hiddenValue control.
+        /// txtuserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenValue;
+        protected global::System.Web.UI.WebControls.TextBox txtuserId;
 
         /// <summary>
-        /// txtCounter control.
+        /// txtPswd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCounter;
+        protected global::System.Web.UI.WebControls.TextBox txtPswd;
 
         /// <summary>
-        /// btnIncrement control.
+        /// rdbRemember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIncrement;
+        protected global::System.Web.UI.WebControls.CheckBox rdbRemember;
+
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }
