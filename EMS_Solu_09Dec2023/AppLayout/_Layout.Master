@@ -22,6 +22,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <label>Mob : </label>
+                        <asp:Label runat="server" ID="lblMob"></asp:Label>
+                    </div>
+                     <div class="col-4">
+                           <label>Email : </label>
+                        <asp:Label runat="server" ID="lblEmail"></asp:Label>
+                    </div>
+                     <div class="col-4">
+                           <label>Department : </label>
+                        <asp:Label runat="server" ID="lblDepartment"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +79,8 @@
             <div class="row mt-5">
                 <div class="bg-light-subtle">
                     <h3 class="text-center">This is my Footer
+                        , Total User Accessing this App Now : 
+                        <asp:Label runat="server" ID="lblTotalUserCount"></asp:Label>
                     </h3>
                 </div>
             </div>

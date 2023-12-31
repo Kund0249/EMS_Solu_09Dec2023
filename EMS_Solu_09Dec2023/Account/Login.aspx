@@ -1,4 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppLayout/_Layout.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="EMS_Solu_09Dec2023.Account.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppLayout/_Layout.Master"
+    AutoEventWireup="true" CodeBehind="Login.aspx.cs"
+    Inherits="EMS_Solu_09Dec2023.Account.Login"
+    %>
+ <%-- ErrorPage="~/ErrorPages/Error.aspx"--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContenHead" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPage" runat="server">
@@ -24,8 +28,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <asp:Button runat="server" ID="btnSubmit" Text="Login"
+                   <td colspan="2">
+                        <asp:Button runat="server" ID="btnSubmit" Text="Login"
                         OnClick="btnSubmit_Click"/>
+                   </td>
                 </tr>
             </table>
         </div>
