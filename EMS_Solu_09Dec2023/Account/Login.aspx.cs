@@ -33,7 +33,7 @@ namespace EMS_Solu_09Dec2023.Account
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-           // throw new Exception("There is some problem");
+            // throw new Exception("There is some problem");
             try
             {
                 if (ValidateUser(txtuserId.Text, txtPswd.Text, out DataTable dt))
@@ -48,23 +48,25 @@ namespace EMS_Solu_09Dec2023.Account
                         Response.Cookies.Add(cookie);
                     }
                     Session["UserDetails"] = dt;
+                    string userrole = dt.Rows[0]["DepartmentCode"].ToString();
+
                     //throw new Exception("There is some problem");
 
                     //FormsAuthentication.RedirectFromLoginPage(txtuserId.Text, false);
 
                     //FormsAuthentication.SetAuthCookie(txtuserId.Text, false);
 
-                    FormsAuthenticationTicket ticket =
-                        new FormsAuthenticationTicket(1, txtuserId.Text, DateTime.Now,
-                        DateTime.Now.AddMinutes(30), false, "");
+                    FormsAuthenticationTicket ticket = new
+                        FormsAuthenticationTicket(1, txtuserId.Text, DateTime.Now,
+                        DateTime.Now.AddMinutes(30), false, userrole);
+                    string secureTicket = FormsAuthentication.Encrypt(ticket);
 
-                    string SecureTicket = FormsAuthentication.Encrypt(ticket);
-
-                    HttpCookie AuthCookie = new HttpCookie(FormsAuthentication.FormsCookieName, SecureTicket);
-
-                    Response.Cookies.Add(AuthCookie);
+                    HttpCookie authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, secureTicket);
                    
-                    Response.Redirect("~/Employee/AddnewEmployee.aspx");
+                    //HttpCookie authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, secureTicket);
+                    Response.Cookies.Add(authcookie);
+                   
+                    Response.Redirect("~/Employee/EmployeeList.aspx");
 
                 }
                 else
@@ -76,12 +78,12 @@ namespace EMS_Solu_09Dec2023.Account
             catch (Exception ex)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(),
-            "S001", "toastr['error']('"+ex.Message+"', 'Error')", true);
-               
+            "S001", "toastr['error']('" + ex.Message + "', 'Error')", true);
+
             }
         }
 
-        private bool ValidateUser(string UseId, string Password,out DataTable dtUser)
+        private bool ValidateUser(string UseId, string Password, out DataTable dtUser)
         {
             using (SqlConnection con =
                 new SqlConnection(ConfigurationManager.
@@ -96,7 +98,7 @@ namespace EMS_Solu_09Dec2023.Account
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 dtUser = dt;
-                if(dt != null)
+                if (dt != null)
                 {
                     if (dt.Rows.Count > 0)
                         return true;

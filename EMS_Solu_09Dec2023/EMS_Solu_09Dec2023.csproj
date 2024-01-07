@@ -151,6 +151,7 @@
     <Content Include="libman.json" />
     <Content Include="AppLayout\_Layout.Master" />
     <Content Include="ErrorPages\Web.config" />
+    <Content Include="Employee\Web.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

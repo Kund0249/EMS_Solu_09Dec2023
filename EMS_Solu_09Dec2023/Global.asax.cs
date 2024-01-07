@@ -29,7 +29,26 @@ namespace EMS_Solu_09Dec2023
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-           
+            //var Identity = new GenericIdentity("kundan");
+
+            //HttpContext.Current.User = new GenericPrincipal(Identity, null);
+
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                var Secureticket = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(Secureticket);
+
+                string username = ticket.Name;
+
+                string role = ticket.UserData;
+                string[] roles = new string[] { role };
+
+                var identity = new GenericIdentity(username);
+                var Princple = new GenericPrincipal(identity, roles);
+
+                HttpContext.Current.User = Princple;
+            }
         }
 
         protected void Application_Error(object sender, EventArgs e)
